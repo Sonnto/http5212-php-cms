@@ -66,5 +66,30 @@ include( 'admin/includes/functions.php' );
 
   <?php endwhile; ?>
 
+  <br>
+
+  <h2>My Skills</h2>
+
+  <?php
+
+  $query = 'SELECT * 
+    FROM skills
+    ORDER BY percent DESC';
+    $result = mysqli_query($connect, $query);
+
+    ?>
+
+    <?php while($record = mysqli_fetch_assoc($result)): ?>
+    
+      <h3><?php echo $record['name']; ?></h3>
+
+      <p>Percent: <?php echo $record['percent']; ?></p>
+
+      <div style="background-color: grey;">
+        <div style="background-color: red; height: 20px; width:<?php echo $record['percent']; ?>%;"></div>
+      </div>
+
+    <?php endwhile; ?>
+
 </body>
 </html>
