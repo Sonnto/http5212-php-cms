@@ -55,6 +55,7 @@ $result = mysqli_query( $connect, $query );
       </td>
       <td align="center"><?php echo $record['type']; ?></td>
       <td align="center" style="white-space: nowrap;"><?php echo htmlentities( $record['date'] ); ?></td>
+      <!-- ======== BUTTONS ======== -->
       <td align="center"><a href="projects_photo.php?id=<?php echo $record['id']; ?>">Photo</i></a></td>
       <td align="center"><a href="projects_edit.php?id=<?php echo $record['id']; ?>">Edit</i></a></td>
       <td align="center">
