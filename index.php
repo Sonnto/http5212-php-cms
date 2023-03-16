@@ -21,8 +21,7 @@ include( 'admin/includes/functions.php' );
 </head>
 <body>
 
-  <h1>Welcome to My Website!</h1>
-  <p>This is the website frontend!</p>
+  <h1>Anthony Ho - Full-Stack Developer</h1>
 
   <?php
 
@@ -48,7 +47,7 @@ include( 'admin/includes/functions.php' );
 
         <p>The image can be inserted using a base64 image:</p>
 
-        <img src="<?php echo $record['photo']; ?>">
+        <img src="<?php echo $record['photo']; ?>" width="800px">
 
         <p>Or by streaming the image through the image.php file:</p>
 
