@@ -14,7 +14,7 @@ if( isset( $_GET['delete'] ) )
     LIMIT 1';
   mysqli_query( $connect, $query );
     
-  set_message( 'employment has been deleted' );
+  set_message( 'Job has been deleted' );
   
   header( 'Location: employment.php' );
   die();
@@ -25,7 +25,7 @@ include( 'includes/header.php' );
 
 $query = 'SELECT *
   FROM employment
-  ORDER BY date DESC';
+  ORDER BY endDate DESC';
 $result = mysqli_query( $connect, $query );
 
 ?>
@@ -34,15 +34,13 @@ $result = mysqli_query( $connect, $query );
 
 <table>
   <tr>
-    <th></th>
     <th align="center">ID</th>
-    <th align="center">Title/Position<th>
+    <th align="center">Title/Position</th>
     <th align="center">Company Name</th>
     <th align="center">Location</th>
     <th align="center">Start Date</th>
     <th align="center">End Date</th>
     <th align="center">Experience</th>
-    <th></th>
     <th></th>
     <th></th>
   </tr>
@@ -51,12 +49,21 @@ $result = mysqli_query( $connect, $query );
       <td align="center"><?php echo $record['id']; ?></td>
       <td align="center">
         <?php echo htmlentities( $record['title'] ); ?>
-        <small><?php echo $record['name']; ?></small>
+      </td>
+      <td align="center">
+        <?php echo htmlentities( $record['name'] ); ?>
       </td>
       <td align="center"><?php echo $record['location']; ?></td>
       <td align="center" style="white-space: nowrap;"><?php echo htmlentities( $record['startDate'] ); ?></td>
-      <td align="center" style="white-space: nowrap;"><?php echo htmlentities( $record['endDate'] ); ?></td>
-      <td align="center"><?php echo $record['experience']; ?></td>
+      <td align="center" style="white-space: nowrap;"><?php
+      if ($record['endDate'] === "0000-00-00"){
+        $endDate = "Present";
+      } else {
+        $endDate = $record['endDate'];
+      }
+      echo htmlentities( $endDate ); ?></td>
+      <td align="left"><?php echo $record['experience']; ?></td>
+  <!-- ======== BUTTONS ======== -->
       <td align="center"><a href="employment_edit.php?id=<?php echo $record['id']; ?>">Edit</i></a></td>
       <td align="center">
         <a href="employment.php?delete=<?php echo $record['id']; ?>" onclick="javascript:confirm('Are you sure you want to delete this job?');">Delete</i></a>
