@@ -9,14 +9,14 @@ secure();
 if( isset( $_GET['delete'] ) )
 {
   
-  $query = 'DELETE FROM projects
+  $query = 'DELETE FROM employment
     WHERE id = '.$_GET['delete'].'
     LIMIT 1';
   mysqli_query( $connect, $query );
     
-  set_message( 'Project has been deleted' );
+  set_message( 'employment has been deleted' );
   
-  header( 'Location: projects.php' );
+  header( 'Location: employment.php' );
   die();
   
 }
@@ -24,47 +24,48 @@ if( isset( $_GET['delete'] ) )
 include( 'includes/header.php' );
 
 $query = 'SELECT *
-  FROM projects
+  FROM employment
   ORDER BY date DESC';
 $result = mysqli_query( $connect, $query );
 
 ?>
 
-<h2>Manage Projects</h2>
+<h2>Manage Employment</h2>
 
 <table>
   <tr>
     <th></th>
     <th align="center">ID</th>
-    <th align="left">Title</th>
-    <th align="center">Type</th>
-    <th align="center">Date</th>
+    <th align="center">Title/Position<th>
+    <th align="center">Company Name</th>
+    <th align="center">Location</th>
+    <th align="center">Start Date</th>
+    <th align="center">End Date</th>
+    <th align="center">Experience</th>
     <th></th>
     <th></th>
     <th></th>
   </tr>
   <?php while( $record = mysqli_fetch_assoc( $result ) ): ?>
     <tr>
-      <td align="center">
-        <img src="image.php?type=project&id=<?php echo $record['id']; ?>&width=300&height=300&format=inside">
-      </td>
       <td align="center"><?php echo $record['id']; ?></td>
-      <td align="left">
-        <?php echo htmlentities( $record['title'] ); ?>
-        <small><?php echo $record['content']; ?></small>
-      </td>
-      <td align="center"><?php echo $record['type']; ?></td>
-      <td align="center" style="white-space: nowrap;"><?php echo htmlentities( $record['date'] ); ?></td>
-      <td align="center"><a href="projects_photo.php?id=<?php echo $record['id']; ?>">Photo</i></a></td>
-      <td align="center"><a href="projects_edit.php?id=<?php echo $record['id']; ?>">Edit</i></a></td>
       <td align="center">
-        <a href="projects.php?delete=<?php echo $record['id']; ?>" onclick="javascript:confirm('Are you sure you want to delete this project?');">Delete</i></a>
+        <?php echo htmlentities( $record['title'] ); ?>
+        <small><?php echo $record['name']; ?></small>
+      </td>
+      <td align="center"><?php echo $record['location']; ?></td>
+      <td align="center" style="white-space: nowrap;"><?php echo htmlentities( $record['startDate'] ); ?></td>
+      <td align="center" style="white-space: nowrap;"><?php echo htmlentities( $record['endDate'] ); ?></td>
+      <td align="center"><?php echo $record['experience']; ?></td>
+      <td align="center"><a href="employment_edit.php?id=<?php echo $record['id']; ?>">Edit</i></a></td>
+      <td align="center">
+        <a href="employment.php?delete=<?php echo $record['id']; ?>" onclick="javascript:confirm('Are you sure you want to delete this job?');">Delete</i></a>
       </td>
     </tr>
   <?php endwhile; ?>
 </table>
 
-<p><a href="projects_add.php"><i class="fas fa-plus-square"></i> Add Project</a></p>
+<p><a href="employment_add.php"><i class="fas fa-plus-square"></i> Add job</a></p>
 
 
 <?php
