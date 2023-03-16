@@ -9,7 +9,7 @@ secure();
 if( !isset( $_GET['id'] ) )
 {
   
-  header( 'Location: projects.php' );
+  header( 'Location: employment.php' );
   die();
   
 }
@@ -17,24 +17,25 @@ if( !isset( $_GET['id'] ) )
 if( isset( $_POST['title'] ) )
 {
   
-  if( $_POST['title'] and $_POST['content'] )
+  if( $_POST['title'] and $_POST['name'] )
   {
     
-    $query = 'UPDATE projects SET
+    $query = 'UPDATE employment SET
       title = "'.mysqli_real_escape_string( $connect, $_POST['title'] ).'",
-      content = "'.mysqli_real_escape_string( $connect, $_POST['content'] ).'",
-      date = "'.mysqli_real_escape_string( $connect, $_POST['date'] ).'",
-      type = "'.mysqli_real_escape_string( $connect, $_POST['type'] ).'",
-      url = "'.mysqli_real_escape_string( $connect, $_POST['url'] ).'"
+      name = "'.mysqli_real_escape_string( $connect, $_POST['name'] ).'",
+      location = "'.mysqli_real_escape_string( $connect, $_POST['location'] ).'",
+      startDate = "'.mysqli_real_escape_string( $connect, $_POST['startDate'] ).'",
+      endDate = "'.mysqli_real_escape_string( $connect, $_POST['endDate'] ).'",
+      experience = "'.mysqli_real_escape_string( $connect, $_POST['experience'] ).'"
       WHERE id = '.$_GET['id'].'
       LIMIT 1';
     mysqli_query( $connect, $query );
     
-    set_message( 'Project has been updated' );
+    set_message( 'Job has been updated' );
     
   }
 
-  header( 'Location: projects.php' );
+  header( 'Location: employment.php' );
   die();
   
 }
@@ -44,7 +45,7 @@ if( isset( $_GET['id'] ) )
 {
   
   $query = 'SELECT *
-    FROM projects
+    FROM employment
     WHERE id = '.$_GET['id'].'
     LIMIT 1';
   $result = mysqli_query( $connect, $query );
@@ -52,7 +53,7 @@ if( isset( $_GET['id'] ) )
   if( !mysqli_num_rows( $result ) )
   {
     
-    header( 'Location: projects.php' );
+    header( 'Location: employments.php' );
     die();
     
   }
@@ -65,22 +66,42 @@ include( 'includes/header.php' );
 
 ?>
 
-<h2>Edit Project</h2>
+<h2>Edit Employment</h2>
 
 <form method="post">
-  
+
   <label for="title">Title:</label>
   <input type="text" name="title" id="title" value="<?php echo htmlentities( $record['title'] ); ?>">
+
+  <br>
+  
+  <label for="name">Name:</label>
+  <input type="text" name="name" id="name" value="<?php echo htmlentities( $record['name'] ); ?>">
     
   <br>
   
-  <label for="content">Content:</label>
-  <textarea type="text" name="content" id="content" rows="5"><?php echo htmlentities( $record['content'] ); ?></textarea>
+  <label for="location">Location:</label>
+  <input type="text" name="location" id="location" value="<?php echo htmlentities( $record['location'] ); ?>">
+
+  <br>
+
+    <label for="startDate">Start Date:</label>
+  <input type="date" name="startDate" id="startDate" value="<?php echo htmlentities( $record['startDate'] ); ?>">
+
+  <br>
+
+    <label for="endDate">End Date:</label>
+  <input type="date" name="endDate" id="endDate" value="<?php echo htmlentities( $record['endDate'] ); ?>">
+
+  <br>
+
+    <label for="experience">Experience:</label>
+  <textarea type="text" name="experience" id="experience" rows="5"><?php echo htmlentities( $record['experience'] ); ?></textarea>
   
   <script>
 
   ClassicEditor
-    .create( document.querySelector( '#content' ) )
+    .create( document.querySelector( '#experience' ) )
     .then( editor => {
         console.log( editor );
     } )
@@ -92,39 +113,11 @@ include( 'includes/header.php' );
   
   <br>
   
-  <label for="url">URL:</label>
-  <input type="text" name="url" id="url" value="<?php echo htmlentities( $record['url'] ); ?>">
-    
-  <br>
-  
-  <label for="date">Date:</label>
-  <input type="date" name="date" id="date" value="<?php echo htmlentities( $record['date'] ); ?>">
-    
-  <br>
-  
-  <label for="type">Type:</label>
-  <?php
-  
-  $values = array( 'Website', 'Graphic Design' );
-  
-  echo '<select name="type" id="type">';
-  foreach( $values as $key => $value )
-  {
-    echo '<option value="'.$value.'"';
-    if( $value == $record['type'] ) echo ' selected="selected"';
-    echo '>'.$value.'</option>';
-  }
-  echo '</select>';
-  
-  ?>
-  
-  <br>
-  
-  <input type="submit" value="Edit Project">
+  <input type="submit" value="Edit Job">
   
 </form>
 
-<p><a href="projects.php"><i class="fas fa-arrow-circle-left"></i> Return to Project List</a></p>
+<p><a href="employment.php"><i class="fas fa-arrow-circle-left"></i> Return to Employment List</a></p>
 
 
 <?php

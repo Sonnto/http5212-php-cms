@@ -6,32 +6,34 @@ include( 'includes/functions.php' );
 
 secure();
 
-if( isset( $_POST['title'] ) )
+if( isset( $_POST['name'] ) )
 {
   
-  if( $_POST['title'] and $_POST['content'] )
+  if( $_POST['name'] and $_POST['location'] )
   {
     
-    $query = 'INSERT INTO projects (
+    $query = 'INSERT INTO Employment (
         title,
-        content,
-        date,
-        type,
-        url
+        name,
+        location,
+        startDate,
+        endDate,
+        experience,
       ) VALUES (
          "'.mysqli_real_escape_string( $connect, $_POST['title'] ).'",
-         "'.mysqli_real_escape_string( $connect, $_POST['content'] ).'",
-         "'.mysqli_real_escape_string( $connect, $_POST['date'] ).'",
-         "'.mysqli_real_escape_string( $connect, $_POST['type'] ).'",
-         "'.mysqli_real_escape_string( $connect, $_POST['url'] ).'"
-      )';
+         "'.mysqli_real_escape_string( $connect, $_POST['name'] ).'",
+         "'.mysqli_real_escape_string( $connect, $_POST['location'] ).'",
+         "'.mysqli_real_escape_string( $connect, $_POST['startDate'] ).'",
+         "'.mysqli_real_escape_string( $connect, $_POST['endDate'] ).'",
+         "'.mysqli_real_escape_string( $connect, $_POST['experience'] ).'"
+         )';
     mysqli_query( $connect, $query );
     
-    set_message( 'Project has been added' );
+    set_message( 'Job has been added' );
     
   }
   
-  header( 'Location: projects.php' );
+  header( 'Location: employment.php' );
   die();
   
 }
@@ -40,22 +42,42 @@ include( 'includes/header.php' );
 
 ?>
 
-<h2>Add Project</h2>
+<h2>Add Employment</h2>
 
 <form method="post">
   
   <label for="title">Title:</label>
-  <input type="text" name="title" id="title">
+  <input type="text" name="title" id="title"/>
+
+  <br>
+  
+    <label for="name">Name:</label>
+  <input type="text" name="name" id="name"/>
     
   <br>
   
-  <label for="content">Content:</label>
-  <textarea type="text" name="content" id="content" rows="10"></textarea>
-      
+  <label for="location">Location:</label>
+  <input type="text" name="location" id="location"/>
+
+  <br>
+
+    <label for="startDate">Start Date:</label>
+  <input type="date" name="startDate" id="startDate"/>
+
+  <br>
+
+    <label for="endDate">End Date:</label>
+  <input type="date" name="endDate" id="endDate"/>
+
+  <br>
+
+    <label for="experience">Experience:</label>
+  <textarea type="text" name="experience" id="experience" rows="5"></textarea>
+  
   <script>
 
   ClassicEditor
-    .create( document.querySelector( '#content' ) )
+    .create( document.querySelector( '#experience' ) )
     .then( editor => {
         console.log( editor );
     } )
@@ -67,38 +89,11 @@ include( 'includes/header.php' );
   
   <br>
   
-  <label for="url">URL:</label>
-  <input type="text" name="url" id="url">
-  
-  <br>
-  
-  <label for="date">Date:</label>
-  <input type="date" name="date" id="date">
-  
-  <br>
-  
-  <label for="type">Type:</label>
-  <?php
-  
-  $values = array( 'Website', 'Graphic Design' );
-  
-  echo '<select name="type" id="type">';
-  foreach( $values as $key => $value )
-  {
-    echo '<option value="'.$value.'"';
-    echo '>'.$value.'</option>';
-  }
-  echo '</select>';
-  
-  ?>
-  
-  <br>
-  
-  <input type="submit" value="Add Project">
+  <input type="submit" value="Add Job">
   
 </form>
 
-<p><a href="projects.php"><i class="fas fa-arrow-circle-left"></i> Return to Project List</a></p>
+<p><a href="employment.php"><i class="fas fa-arrow-circle-left"></i> Return to Employment List</a></p>
 
 
 <?php
