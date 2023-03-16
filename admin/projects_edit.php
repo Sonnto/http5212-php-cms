@@ -105,7 +105,7 @@ include( 'includes/header.php' );
   <label for="type">Type:</label>
   <?php
   
-  $values = array( 'Website', 'Graphic Design' );
+  $values = array( 'Website', 'Graphic Design', 'Game', 'Other' );
   
   echo '<select name="type" id="type">';
   foreach( $values as $key => $value )
