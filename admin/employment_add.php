@@ -6,19 +6,19 @@ include( 'includes/functions.php' );
 
 secure();
 
-if( isset( $_POST['name'] ) )
+if( isset( $_POST['title'] ) )
 {
   
-  if( $_POST['name'] and $_POST['location'] )
+  if( $_POST['title'] and $_POST['name'] )
   {
     
-    $query = 'INSERT INTO Employment (
+    $query = 'INSERT INTO employment (
         title,
         name,
         location,
         startDate,
         endDate,
-        experience,
+        experience
       ) VALUES (
          "'.mysqli_real_escape_string( $connect, $_POST['title'] ).'",
          "'.mysqli_real_escape_string( $connect, $_POST['name'] ).'",
@@ -26,11 +26,13 @@ if( isset( $_POST['name'] ) )
          "'.mysqli_real_escape_string( $connect, $_POST['startDate'] ).'",
          "'.mysqli_real_escape_string( $connect, $_POST['endDate'] ).'",
          "'.mysqli_real_escape_string( $connect, $_POST['experience'] ).'"
-         )';
+      )';
     mysqli_query( $connect, $query );
     
     set_message( 'Job has been added' );
     
+  } else {
+    set_message( 'Error, something went wrong and the job was not added.');
   }
   
   header( 'Location: employment.php' );
@@ -42,16 +44,16 @@ include( 'includes/header.php' );
 
 ?>
 
-<h2>Add Employment</h2>
+<h2>Add Job</h2>
 
 <form method="post">
   
-  <label for="title">Title:</label>
+  <label for="title">Title/Position:</label>
   <input type="text" name="title" id="title"/>
 
   <br>
   
-    <label for="name">Name:</label>
+    <label for="name">Company Name:</label>
   <input type="text" name="name" id="name"/>
     
   <br>
