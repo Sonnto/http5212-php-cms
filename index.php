@@ -66,15 +66,24 @@ include( 'admin/includes/functions.php' );
           <p>Web • Mobile • Apps</p>
         </div>
         <div class="social-icons">
-          <a href="https://github.com/sonnto"
-            ><i class="fa-brands fa-square-github"></i
-          ></a>
-          <a href="https://linkedin.com/in/anthonykfho"
-            ><i class="fa-brands fa-linkedin"></i
-          ></a>
-          <a href="https://twitter.com/anthonykfho"
-            ><i class="fa-brands fa-square-twitter"></i
-          ></a>
+        <a
+          href="https://github.com/sonnto"
+          aria-label="Click for Anthony's Github"
+          rel="noopener"
+          ><i class="fa-brands fa-square-github"></i
+        ></a>
+        <a
+          href="https://linkedin.com/in/anthonykfho"
+          aria-label="Click for Anthony's LinkedIn"
+          rel="noopener"
+          ><i class="fa-brands fa-linkedin"></i
+        ></a>
+        <a
+          href="https://twitter.com/anthonykfho"
+          aria-label="Click for Anthony's Twitter"
+          rel="noopener"
+          ><i class="fa-brands fa-square-twitter"></i
+        ></a>
         </div>
       </section>
     <hr id="division" />
@@ -112,13 +121,19 @@ include( 'admin/includes/functions.php' );
           <div class="contact-info">
             <p>
               <i class="fa-solid fa-envelope"></i>
-              <a href="mailto:anthonykfho@gmail.com"
+              <a
+                href="mailto:anthonykfho@gmail.com"
+                aria-label="Click to e-mail Anthony"
+                rel="noopener"
                 >&nbsp;&nbsp;&nbsp;anthonykfho@gmail.com</a
               >
             </p>
             <p>
               <i class="fa-solid fa-mobile-screen-button"></i>
-              <a href="tel:1-647-588-4334"
+              <a
+                href="tel:1-647-588-4334"
+                aria-label="Click to call Anthony via his mobile phone number"
+                rel="noopener"
                 >&nbsp;&nbsp;&nbsp;+1 (647) 588-4334</a
               >
             </p>
