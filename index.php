@@ -32,17 +32,17 @@ include( 'admin/includes/functions.php' );
       <nav id="nav">
         <div id="menu-tab"></div>
         <div id="menu-toggle">
-          <input type="checkbox" />
+          <input name="menu-button-click" type="checkbox" />
           <span></span>
           <span></span>
           <span></span>
           <ul id="menu">
             <li><a href="#home">Home</a></li>
-            <hr class="nav-division" />
+            <li><hr class="nav-division" /></li>
             <li><a href="#about">About</a></li>
-            <hr class="nav-division" />
+            <li><hr class="nav-division" /></li>
             <li><a href="#resume">Résumé</a></li>
-            <hr class="nav-division" />
+            <li><hr class="nav-division" /></li>
             <li><a href="#projects">Projects</a></li>
           </ul>
         </div>
