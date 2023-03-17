@@ -37,13 +37,13 @@ include( 'admin/includes/functions.php' );
           <span></span>
           <span></span>
           <ul id="menu">
-            <a href="#home"><li>Home</li></a>
+            <li><a href="#home">Home</a></li>
             <hr class="nav-division" />
-            <a href="#about"><li>About</li></a>
+            <li><a href="#about">About</a></li>
             <hr class="nav-division" />
-            <a href="#resume"><li>Résumé</li></a>
+            <li><a href="#resume">Résumé</a></li>
             <hr class="nav-division" />
-            <a href="#projects"><li>Projects</li></a>
+            <li><a href="#projects">Projects</a></li>
           </ul>
         </div>
       </nav>
