@@ -320,7 +320,7 @@ a:active i {
 
 .resume-container {
   text-align: center;
-  margin: 0px 32px;
+  /* margin: 0px 32px; */
 }
 
 .experience-container {
@@ -480,9 +480,9 @@ a:active i {
 
   /* ==================== TABLET 769px RESUME ==================== */
 
-  .resume-container {
+  /* .resume-container {
     margin: 0 58px;
-  }
+  } */
 
   .experience-container {
     font-size: 20px;
@@ -605,9 +605,9 @@ a:active i {
 
   /* ==================== DESKTOP 1025px RESUME ==================== */
 
-  .resume-container {
+  /* .resume-container {
     margin: 0 58px;
-  }
+  } */
 
   /* ==================== DESKTOP 1025px PROJECTS ==================== */
 
