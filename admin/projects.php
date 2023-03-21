@@ -36,7 +36,10 @@ $result = mysqli_query( $connect, $query );
   <tr>
     <th></th>
     <th align="center">ID</th>
-    <th align="left">Title</th>
+    <th align="center">Title</th>
+    <th align="left">Content</th>
+    <th align="left">GitHub Url</th>
+    <th align="left">Test Project Url</th>
     <th align="center">Type</th>
     <th align="center">Date</th>
     <th></th>
@@ -51,8 +54,10 @@ $result = mysqli_query( $connect, $query );
       <td align="center"><?php echo $record['id']; ?></td>
       <td align="left">
         <?php echo htmlentities( $record['title'] ); ?>
-        <small><?php echo $record['content']; ?></small>
       </td>
+      <td align="left"><?php echo $record['content']; ?></td>
+      <td align="left"><?php echo $record['url']; ?></td>
+      <td align="left"><?php echo $record['urlTest']; ?></td>
       <td align="center"><?php echo $record['type']; ?></td>
       <td align="center" style="white-space: nowrap;"><?php echo htmlentities( $record['date'] ); ?></td>
       <!-- ======== BUTTONS ======== -->
