@@ -27,7 +27,7 @@ include( 'includes/header.php' );
 
 $query = 'SELECT *
   FROM skills
-  ORDER BY name ASC';
+  ORDER BY percent DESC';
 $result = mysqli_query( $connect, $query );
 
 ?>
