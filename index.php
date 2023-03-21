@@ -150,71 +150,76 @@ include( 'admin/includes/functions.php' );
     <section id="projects" class="projects-container">
       <h2 class="section-heading">Projects</h2>
       <div class="projects-content-container">
-  <?php
-
-  $query = 'SELECT *
-    FROM projects
-    ORDER BY date DESC';
-  $result = mysqli_query( $connect, $query );
-
-  ?>
-
-  <p>There are <?php echo mysqli_num_rows($result); ?> projects in the database!</p>
-
-  <hr>
-
-  <?php while($record = mysqli_fetch_assoc($result)): ?>
-
-    <div>
-
-      <h3 class="project-name"><?php echo $record['title']; ?></h3>
-      <div class="project-description"><?php echo $record['content']; ?>
-      <?php if($record['photo']): ?>
-
-        <img src="<?php echo $record['photo']; ?>" width="800px" alt="Preview of <?php echo $record['title']?>."></div>
-
-      <?php else: ?>
-
-        <p>[ This project does not have a preview ]</p></div>
-
-      <?php endif; ?>
-
-      <div class="project-media-icon"><a
-        href="<?php echo $record['url']?>"
-        aria-label="Click for Github repository"
-        rel="noopener"><i class="fa-solid fa-code"></i></a>
-      </div>
-    </div>
-
-    <hr>
-
-  <?php endwhile; ?>
-
-  <br>
-
-  <h2>My Skills</h2>
-
-  <?php
-
-  $query = 'SELECT * 
-    FROM skills
-    ORDER BY percent DESC';
-    $result = mysqli_query($connect, $query);
-
+    <?php
+      $query = 'SELECT *
+        FROM projects
+        ORDER BY date DESC';
+      $result = mysqli_query( $connect, $query );
     ?>
-
     <?php while($record = mysqli_fetch_assoc($result)): ?>
-    
-      <h3><?php echo $record['name']; ?></h3>
-
-      <p>Percent: <?php echo $record['percent']; ?></p>
-
-      <div style="background-color: grey;">
-        <div style="background-color: red; height: 20px; width:<?php echo $record['percent']; ?>%;"></div>
+      <div class="project-card-item">
+        <!-- PROJECT PREVIEW -->
+        <?php if($record['photo']): ?>
+          <div class="project-preview">
+            <img src="<?php echo $record['photo']; ?>" width="800px" alt="Preview of <?php echo $record['title']?>."/>
+          </div>
+        <?php else: ?>
+          <p>[ This project does not have a preview ]</p>
+          </div>
+        <?php endif; ?>
+        <!-- PROJECT NAME -->
+        <h3 class="project-name"><?php echo $record['title']; ?></h3>
+        <!-- PROJECT DESCRIPTION -->
+        <div class="project-description"><?php echo $record['content']; ?>
+        </div>
+        <!-- PROJECT URLs/LINKS -->
+        <div class="project-media-icon"><a href="<?php echo $record['url']?>" aria-label="Click for Github repository" rel="noopener"><i class="fa-solid fa-code"></i></a>
+        <?php
+        $urlTest="";
+        $urlAria="";
+        ?>
+        <?php if($record['urlTest']): ?>
+          <?php
+          $urlTest=$record['urlTest'];
+          $urlAria='Click for Github repository';
+          ?>
+        <?php else: ?>
+          <?php
+          $urlTest="#";
+          $urlAria="Nothing to click here";
+          ?>
+        <?php endif ?>
+        <a href="<?php echo $urlTest?>" aria-label="<?php echo $urlAria?>"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        </div>
       </div>
+      <?php endwhile; ?>
+    </section>
+    <hr id="division" />
+    <!--============================== SKILLS ==============================-->
+    <section id="skills" class="projects-container">
+      <h2 class="section-heading">Skills</h2>
+      <div class="projects-content-container">
+      <?php
 
-    <?php endwhile; ?>
+        $query = 'SELECT * 
+          FROM skills
+          ORDER BY percent DESC';
+          $result = mysqli_query($connect, $query);
 
+      ?>
+
+      <?php while($record = mysqli_fetch_assoc($result)): ?>
+        
+        <h3><?php echo $record['name']; ?></h3>
+
+        <p>Percent: <?php echo $record['percent']; ?></p>
+
+        <div style="background-color: grey;">
+          <div style="background-color: red; height: 20px; width:<?php echo $record['percent']; ?>%;"></div>
+        </div>
+
+      <?php endwhile; ?>
+    </section>
   <footer id="footer">© Copyright, Kee-Fung Anthony Ho, 2022.</footer>
 </body>
 </html>
