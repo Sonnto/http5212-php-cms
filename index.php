@@ -150,9 +150,6 @@ include( 'admin/includes/functions.php' );
     <section id="projects" class="projects-container">
       <h2 class="section-heading">Projects</h2>
       <div class="projects-content-container">
-
-  <h1>Anthony Ho - Full-Stack Developer</h1>
-
   <?php
 
   $query = 'SELECT *
@@ -170,25 +167,23 @@ include( 'admin/includes/functions.php' );
 
     <div>
 
-      <h2><?php echo $record['title']; ?></h2>
-      <?php echo $record['content']; ?>
-
+      <h3 class="project-name"><?php echo $record['title']; ?></h3>
+      <div class="project-description"><?php echo $record['content']; ?>
       <?php if($record['photo']): ?>
 
-        <p>The image can be inserted using a base64 image:</p>
-
-        <img src="<?php echo $record['photo']; ?>" width="800px">
-
-        <p>Or by streaming the image through the image.php file:</p>
-
-        <img src="admin/image.php?type=project&id=<?php echo $record['id']; ?>&width=100&height=100">
+        <img src="<?php echo $record['photo']; ?>" width="800px" alt="Preview of <?php echo $record['title']?>."></div>
 
       <?php else: ?>
 
-        <p>This record does not have an image!</p>
+        <p>[ This project does not have a preview ]</p></div>
 
       <?php endif; ?>
 
+      <div class="project-media-icon"><a
+        href="<?php echo $record['url']?>"
+        aria-label="Click for Github repository"
+        rel="noopener"><i class="fa-solid fa-code"></i></a>
+      </div>
     </div>
 
     <hr>
@@ -219,6 +214,7 @@ include( 'admin/includes/functions.php' );
       </div>
 
     <?php endwhile; ?>
+
   <footer id="footer">© Copyright, Kee-Fung Anthony Ho, 2022.</footer>
 </body>
 </html>
