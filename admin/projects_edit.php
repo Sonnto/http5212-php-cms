@@ -23,6 +23,8 @@ if( isset( $_POST['title'] ) )
     $query = 'UPDATE projects SET
       title = "'.mysqli_real_escape_string( $connect, $_POST['title'] ).'",
       content = "'.mysqli_real_escape_string( $connect, $_POST['content'] ).'",
+      url = "'.mysqli_real_escape_string( $connect, $_POST['url'] ).'",
+      urlTest = "'.mysqli_real_escape_string( $connect, $_POST['urlTest'] ).'",
       date = "'.mysqli_real_escape_string( $connect, $_POST['date'] ).'",
       type = "'.mysqli_real_escape_string( $connect, $_POST['type'] ).'",
       url = "'.mysqli_real_escape_string( $connect, $_POST['url'] ).'"
@@ -92,8 +94,13 @@ include( 'includes/header.php' );
   
   <br>
   
-  <label for="url">URL:</label>
+  <label for="url">Github URL:</label>
   <input type="text" name="url" id="url" value="<?php echo htmlentities( $record['url'] ); ?>">
+    
+  <br>
+
+  <label for="url">Project Test URL:</label>
+  <input type="text" name="urlTest" id="urlTest" value="<?php echo htmlentities( $record['urlTest'] ); ?>">
     
   <br>
   
