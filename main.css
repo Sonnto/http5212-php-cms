@@ -345,7 +345,8 @@ a:active i {
 
 /* ==================== PROJECTS ==================== */
 
-.projects-content-container {
+.projects-content-container,
+.skills-content-container {
   display: flex;
   flex-flow: row wrap;
   gap: 24px;
@@ -499,7 +500,8 @@ a:active i {
 
   /* ==================== TABLET 769px PROJECTS ==================== */
 
-  .projects-content-container {
+  .projects-content-container,
+  .skills-content-container {
     gap: 32px;
     margin: 24px 58px 58px 58px;
   }
@@ -611,7 +613,8 @@ a:active i {
 
   /* ==================== DESKTOP 1025px PROJECTS ==================== */
 
-  .projects-content-container {
+  .projects-content-container,
+  .skills-content-container {
     margin: 32px 58px 58px 58px;
     justify-content: space-evenly;
   }
