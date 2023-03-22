@@ -44,6 +44,8 @@ include( 'admin/includes/functions.php' );
             <li><a href="#resume">Résumé</a></li>
             <li><hr class="nav-division" /></li>
             <li><a href="#projects">Projects</a></li>
+            <li><hr class="nav-division" /></li>
+            <li><a href="#skills">Skills</a></li>
           </ul>
         </div>
       </nav>
@@ -145,6 +147,7 @@ include( 'admin/includes/functions.php' );
     <!--============================== RESUME ==============================-->
     <section id="resume" class="resume-container">
     <h2 class="section-heading">Résumé</h2>
+    </section>
     <hr id="division" />
     <!--============================== PROJECTS ==============================-->
     <section id="projects" class="projects-container">
@@ -188,7 +191,7 @@ include( 'admin/includes/functions.php' );
           $urlTest="#";
           $urlAria="Nothing to click here";
           ?>
-        <?php endif ?>
+        <?php endif; ?>
         <a href="<?php echo $urlTest?>" aria-label="<?php echo $urlAria?>"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
         </div>
       </div>
@@ -196,28 +199,32 @@ include( 'admin/includes/functions.php' );
     </section>
     <hr id="division" />
     <!--============================== SKILLS ==============================-->
-    <section id="skills" class="projects-container">
+    <section id="skills" class="skills-container">
       <h2 class="section-heading">Skills</h2>
-      <div class="projects-content-container">
+      <div class="skills-content-container">
       <?php
-
         $query = 'SELECT * 
           FROM skills
           ORDER BY percent DESC';
           $result = mysqli_query($connect, $query);
-
       ?>
-
       <?php while($record = mysqli_fetch_assoc($result)): ?>
-        
-        <h3><?php echo $record['name']; ?></h3>
-
-        <p>Percent: <?php echo $record['percent']; ?></p>
-
-        <div style="background-color: grey;">
-          <div style="background-color: red; height: 20px; width:<?php echo $record['percent']; ?>%;"></div>
+        <?php $websiteLink=""; $websiteAria="";?>
+        <?php if($record['url']): ?>
+          <?php
+            $websiteLink=$record['url'];
+            $websiteAria="Home website for skill";
+          ?>
+        <?php else: ?>
+          <?php
+            $websiteLink="";
+            $websiteAria="There is no home website for this skill";
+          ?>
+        <?php endif; ?>
+        <h3><a href="<?php echo $websiteLink;?>" aria-label="<?php echo $websiteAria?>"><?php echo $record['name'];?></a></h3>
+        <div style="background-color: #cadbee; border-radius: 40px;">
+          <div style="background-color: #98bddc; height: 20px; border-radius: 40px; width:<?php echo $record['percent'];?>%;"></div>
         </div>
-
       <?php endwhile; ?>
     </section>
   <footer id="footer">© Copyright, Kee-Fung Anthony Ho, 2022.</footer>
