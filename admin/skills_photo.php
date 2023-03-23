@@ -14,16 +14,16 @@ if( !isset( $_GET['id'] ) )
   
 }
 
-if( isset( $_FILES['photo'] ) )
+if( isset( $_FILES['logo'] ) )
 {
   
-  if( isset( $_FILES['photo'] ) )
+  if( isset( $_FILES['logo'] ) )
   {
   
-    if( $_FILES['photo']['error'] == 0 )
+    if( $_FILES['logo']['error'] == 0 )
     {
 
-      switch( $_FILES['photo']['type'] )
+      switch( $_FILES['logo']['type'] )
       {
         case 'image/png': 
           $type = 'png'; 
@@ -38,7 +38,7 @@ if( isset( $_FILES['photo'] ) )
       }
 
       $query = 'UPDATE skills SET
-        photo = "data:image/'.$type.';base64,'.base64_encode( file_get_contents( $_FILES['photo']['tmp_name'] ) ).'"
+        logo = "data:image/'.$type.';base64,'.base64_encode( file_get_contents( $_FILES['logo']['tmp_name'] ) ).'"
         WHERE id = '.$_GET['id'].'
         LIMIT 1';
       mysqli_query( $connect, $query );
@@ -62,7 +62,7 @@ if( isset( $_GET['id'] ) )
   {
     
     $query = 'UPDATE skills SET
-      photo = ""
+      logo = ""
       WHERE id = '.$_GET['id'].'
       LIMIT 1';
     $result = mysqli_query( $connect, $query );
@@ -104,11 +104,11 @@ include 'includes/wideimage/WideImage.php';
   Note: For best results, photos should be approximately 800 x 800 pixels.
 </p>
 
-<?php if( $record['photo'] ): ?>
+<?php if( $record['logo'] ): ?>
 
   <?php
 
-  $data = base64_decode( explode( ',', $record['photo'] )[1] );
+  $data = base64_decode( explode( ',', $record['logo'] )[1] );
   $img = WideImage::loadFromString( $data );
   $data = $img->resize( 200, 200, 'outside' )->crop( 'center', 'center', 200, 200 )->asString( 'jpg', 70 );
 
@@ -120,8 +120,8 @@ include 'includes/wideimage/WideImage.php';
 
 <form method="post" enctype="multipart/form-data">
   
-  <label for="photo">Photo:</label>
-  <input type="file" name="photo" id="photo">
+  <label for="phlogooto">Photo:</label>
+  <input type="file" name="logo" id="logo">
   
   <br>
   
