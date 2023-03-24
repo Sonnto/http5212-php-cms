@@ -221,9 +221,13 @@ include( 'admin/includes/functions.php' );
             $websiteAria="There is no home website for this skill";
           ?>
         <?php endif; ?>
-        <h3><a href="<?php echo $websiteLink;?>" aria-label="<?php echo $websiteAria?>"><?php echo $record['name'];?></a></h3>
-        <div style="background-color: #cadbee; border-radius: 40px;">
-          <div style="background-color: #98bddc; height: 20px; border-radius: 40px; width:<?php echo $record['percent'];?>%;"></div>
+          <div style="margin-bottom: 20px;">
+            <h3><a href="<?php echo $websiteLink;?>" aria-label="<?php echo $websiteAria?>"><img src="admin/image.php?type=skill&id=<?php echo $record['id']; ?>&width=100&height=100"></a></h3>
+              <div style="background-color: #cadbee; border-radius: 40px;">
+                <div style="background-color: #98bddc; height: 20px; border-radius: 40px; width:<?php echo $record['percent'];?>%; border-bottom: 2px solid #444;">
+              </div>
+            </div>
+          </div>
         </div>
       <?php endwhile; ?>
     </section>
