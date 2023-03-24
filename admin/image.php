@@ -49,12 +49,10 @@ include 'includes/wideimage/WideImage.php';
 $data = base64_decode( explode( ',', $record['photo'] )[1] );
 $img = WideImage::loadFromString( $data );
 
-if( isset( $_GET['width'] ) and isset( $_GET['height'] ) )
+if (isset($_GET['width']) && isset($_GET['height']))
 {
-
-  $img = $img->resize( $_GET['width'], $_GET['height'], isset($_GET['format']) ? $_GET['format'] : 'outside' );
-  $img = $img->crop( 'center', 'center', $_GET['width'], $_GET['height'] );
-
+    $height = min($_GET['height'], 100); // set the maximum height to 100
+    $img = $img->resize(null, $height, isset($_GET['format']) ? $_GET['format'] : 'outside');
 }
 
 $img->output( 'png', 8 );
